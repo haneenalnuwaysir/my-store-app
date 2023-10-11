@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CartService } from 'src/app/service/cart.service';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
@@ -36,4 +37,11 @@ export class UserDetailsComponent implements OnInit {
   get creditCard() {
     return this.createForm.get('creditCard');
   }
+
+  OnlyNumbersAllowed(event: KeyboardEvent): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    else return true;
+  }
+
 }
