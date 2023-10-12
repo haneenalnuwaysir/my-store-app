@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Product } from 'src/app/model/product';
+import { ProductStore } from 'src/app/model/productModel';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -10,17 +10,17 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
   private ngUnsubscribe = new Subject<void>();
-  products: Product[] = [];
+  productItems: ProductStore[] = [];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService
-      .getProduct()
+      .getTheProduct()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (res) => {
-          this.products = res;
+          this.productItems = res;
         },
         error: (err) => console.log(err),
       });

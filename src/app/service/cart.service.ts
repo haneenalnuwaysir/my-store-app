@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
-  storage = window.localStorage;
+  storageData = window.localStorage;
 
   constructor() {}
   getCartProduct() {
-    const getProduct = this.storage.getItem('products');
-    return getProduct ? JSON.parse(getProduct) : [];
+    const getTheProduct = this.storageData.getItem('products');
+    return getTheProduct ? JSON.parse(getTheProduct) : [];
   }
-  clearCart(): void {
-    this.storage.clear();
+  clearCartProduct(): void {
+    this.storageData.clear();
   }
 }

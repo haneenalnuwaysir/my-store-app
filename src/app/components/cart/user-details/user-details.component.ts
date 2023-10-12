@@ -1,11 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { CartService } from 'src/app/service/cart.service';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
@@ -21,7 +19,7 @@ export class UserDetailsComponent implements OnInit {
     this.createForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(4)]],
       address: ['', [Validators.required]],
-      creditCard: ['', [Validators.required]],
+      credit: ['', [Validators.required]],
     });
   }
   onSubmit() {
@@ -34,8 +32,8 @@ export class UserDetailsComponent implements OnInit {
   get address() {
     return this.createForm.get('address');
   }
-  get creditCard() {
-    return this.createForm.get('creditCard');
+  get credit() {
+    return this.createForm.get('credit');
   }
 
   OnlyNumbersAllowed(event: KeyboardEvent): boolean {

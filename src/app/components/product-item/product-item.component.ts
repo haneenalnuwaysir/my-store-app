@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/model/product';
+import { ProductStore } from 'src/app/model/productModel';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -9,9 +9,9 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  @Input() productItem!: Product;
+  @Input() productItem!: ProductStore;
   selectedItem = '1';
-  productCount: string[] = ['1', '2', '3', '4', '5'];
+  productCount: string[] = ['1', '2', '3', '4', '5', '6'];
 
   constructor(
     private productService: ProductService,
@@ -20,27 +20,27 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  selectChange(value: any) {
+  selectItemChange(value: any) {
     this.selectedItem = value;
   }
-
-  addProductToCart(product: Product): void {
-    const cartProducts: Product[] = this.cartService.getCartProduct();
-    let productInCart = cartProducts.find((ele) => ele.id === product.id);
+  refresh(): void {
+    window.location.reload();
+  }
+  addItem(product: ProductStore): void {
+    const cProducts: ProductStore[] = this.cartService.getCartProduct();
+    let productInCart = cProducts.find((e) => e.id === product.id);
     if (productInCart) {
       productInCart.amount = this.selectedItem;
-      productInCart ? this.productService.addProduct(cartProducts) : null;
+      productInCart ? this.productService.addProduct(cProducts) : null;
     } else {
-      cartProducts.push(Object.assign(product, { amount: this.selectedItem }));
-      this.productService.addProduct(cartProducts);
+      cProducts.push(Object.assign(product, { amount: this.selectedItem }));
+      this.productService.addProduct(cProducts);
       const message = `${product.name} has been added to your cart.`;
       alert(message);
     }
     this.refresh();
   }
 
-  refresh(): void {
-    window.location.reload();
-  }
+
 
 }

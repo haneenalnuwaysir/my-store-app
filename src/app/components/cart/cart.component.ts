@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/model/product';
+import { ProductStore } from 'src/app/model/productModel';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartProducts: Product[] = [];
+  cartItems: ProductStore[] = [];
   @Output() userInfo = new EventEmitter();
   totalPrice: number | string = '';
   productCount: string[] = ['1', '2', '3', '4', '5'];
@@ -17,12 +17,12 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private route: Router) {}
 
   ngOnInit(): void {
-    this.cartProducts = this.cartService.getCartProduct();
-    this.calculateTotal();
+    this.cartItems = this.cartService.getCartProduct();
+    this.total();
   }
 
   onSubmit(value: any) {
-    this.cartService.clearCart();
+    this.cartService.clearCartProduct();
     this.route.navigate([`success/${value.firstName}/${this.totalPrice}`]);
   }
 
@@ -30,32 +30,32 @@ export class CartComponent implements OnInit {
     window.location.reload();
   }
 
-  selectChange(value: string, product: Product) {
-    const index = this.cartProducts.indexOf(product);
-    this.cartProducts[index] = product;
-    this.cartProducts[index].amount = value;
-    localStorage.setItem('products', JSON.stringify(this.cartProducts));
-    this.calculateTotal();
+  selectChange(value: string, product: ProductStore) {
+    const index = this.cartItems.indexOf(product);
+    this.cartItems[index] = product;
+    this.cartItems[index].amount = value;
+    localStorage.setItem('products', JSON.stringify(this.cartItems));
+    this.total();
     this.refresh();
   }
 
-  calculateTotal() {
-    this.totalPrice = this.cartProducts.reduce((acc, item) => {
+  total() {
+    this.totalPrice = this.cartItems.reduce((accurecy, i) => {
       this.totalPrice = parseFloat(
-        (acc + item.price * Number(item.amount)).toFixed(2)
+        (accurecy + i.price * Number(i.amount)).toFixed(2)
       );
       return this.totalPrice;
     }, 0);
   }
 
-  deletedItem(id: number) {
+  deleteItem(id: number) {
     const storageProducts = this.cartService.getCartProduct();
     const products = storageProducts.filter(
-      (product: Product) => product.id !== id
+      (product: ProductStore) => product.id !== id
     );
     window.localStorage.clear();
     localStorage.setItem('products', JSON.stringify(products));
     this.refresh();
-    this.calculateTotal();
+    this.total();
   }
 }

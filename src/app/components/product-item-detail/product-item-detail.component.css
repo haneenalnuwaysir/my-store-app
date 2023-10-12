@@ -35,15 +35,19 @@
   .detail-item {
     display: flex;
     flex-direction: column;
-    margin-left: 128px;
-    margin-right: 128px;
+    margin-left: 110px;
+    margin-right: 110px;
   }
+  input[type=submit]:hover {
+    background-color: #0b7fbd;
+  }
+
   .btn {
     background-color: #33b5e5; 
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     color: white;
-    padding: 10px 25px;
+    padding: 8px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

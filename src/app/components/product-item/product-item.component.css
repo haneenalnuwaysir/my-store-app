@@ -1,12 +1,12 @@
 .product-image {      
     list-style-type: none;
-    width: 290px;
-    padding: 20px;
+    width: 230px;
+    padding: 10px;
     margin: 6px 6px;        
     border: 1px solid #33B5E5;
   } 
-  .product-item{margin: 2rem 1rem;}
-  .product-container {
+
+  .product-item {
     margin-top: 64px;
     display: flex;
     flex-wrap: wrap;
@@ -16,18 +16,45 @@
   }
   
   .select-input {
-    width: 108px; 
+    width: 100px; 
     margin-bottom: 8px;
   }
   .btn {
     background-color: #33b5e5; 
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     color: white;
-    padding: 10px 25px;
+    padding: 8px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin-left: 95px;
+    margin-right: 95px;
   }
+
+  /* .product-item {
+    display: flex;
+    align-items: center;
+    padding: 4rem;} */
+
+    .product-detail {
+      text-align: center;
+      display: flex;
+      margin-left: 100px;
+      margin-right: 100px;
+      padding: 1px;
+    }
+
+    input[type=text], select {
+      width: 100%;
+      padding: 8px 20px;
+      margin: 5px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
