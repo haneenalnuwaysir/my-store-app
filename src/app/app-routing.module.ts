@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'item/:id', component: ProductItemDetailComponent },
   { path: 'cart', component: CartComponent },
   {
-    path: 'success/:firstName/:total',
+    path: 'prossesSuccess/:name/:total',
     component: ConfirmationComponent,
   },
 ];

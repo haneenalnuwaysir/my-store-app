@@ -7,12 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
-  firstName!: string | null;
+  name!: string | null;
   totalPrice!: number;
   constructor(private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.firstName = params.get('firstName');
+      this.name = params.get('name');
       this.totalPrice = Number(params.get('totalPrice'));
     });
   }
