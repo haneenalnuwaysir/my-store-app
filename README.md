@@ -2,14 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
-MyStoreApp is a single-page application built in Angular, that offers a rich, dynamic experience on the web. It presents a list of product which can be added to a cart then checkout. Bellow are all the functionality one can perform:  
-- View list of products.
-- Add products to cart.
-- View products in cart.
-- Delete product from cart.
-- Checkout products in cart.
-- Calculate cart total in cart.
-
+MyStore App is a single-page application built in Angular, that offers a rich, dynamic experience on the web. It presents a list of product which can be added to a cart then checkout. You can View, Add product and view it in the cart also remove it.
 ## Dependencies 
 
 To install the dependencies for this project, run the following command: 
