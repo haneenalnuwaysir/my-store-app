@@ -3,7 +3,7 @@
     <img class="detail-image" src="{{ product!.url }}" />
     <div class="detail-item">
         <h2>{{ product!.name }}</h2>
-        <p >{{ product!.price | currency: "EUR" }}</p>
+        <p >{{ product!.price  }}</p>
         <p >{{ product!.description }}</p>
         <form (ngSubmit)="addItem(product)">
             <select [(ngModel)]="selectedItem" style="width: 100px" class="product-item-detail" 

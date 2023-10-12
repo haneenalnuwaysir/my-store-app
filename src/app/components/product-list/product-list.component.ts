@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  private ngUnsubscribe = new Subject<void>();
+  private ngUnsub = new Subject<void>();
   productItems: ProductStore[] = [];
 
   constructor(private productService: ProductService) {}
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService
       .getTheProduct()
-      .pipe(takeUntil(this.ngUnsubscribe))
+      .pipe(takeUntil(this.ngUnsub))
       .subscribe({
         next: (res) => {
           this.productItems = res;

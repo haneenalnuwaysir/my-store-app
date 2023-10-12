@@ -13,12 +13,12 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class ProductItemDetailComponent implements OnInit {
 
-  private ngUnsubscribe = new Subject<void>();
+  private ngUnsub = new Subject<void>();
   product!: ProductStore;
   products!: ProductStore[];
   quantity: number = 1;
   id!: number;
-  itemCount: string[] = ['1', '2', '3', '4', '5','6'];
+  itemCount: string[] = ['1', '2', '3', '4', '5'];
   selectedItem = '1';
 
   constructor(
@@ -34,7 +34,7 @@ export class ProductItemDetailComponent implements OnInit {
     });
     this.productService
       .getTheProduct()
-      .pipe(takeUntil(this.ngUnsubscribe))
+      .pipe(takeUntil(this.ngUnsub))
       .subscribe({
         next: (response) => {
           this.products = response;
@@ -76,8 +76,8 @@ export class ProductItemDetailComponent implements OnInit {
 
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.ngUnsub.next();
+    this.ngUnsub.complete();
   }
 
 }
