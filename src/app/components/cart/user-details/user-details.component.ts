@@ -17,7 +17,7 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
       address: ['', [Validators.required]],
       credit: ['', [Validators.required]],
     });
@@ -26,8 +26,8 @@ export class UserDetailsComponent implements OnInit {
     this.userInfo.emit(this.createForm.value);
   }
 
-  get firstName() {
-    return this.createForm.get('firstName');
+  get name() {
+    return this.createForm.get('name');
   }
   get address() {
     return this.createForm.get('address');
