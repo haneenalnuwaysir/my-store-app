@@ -3,15 +3,15 @@
     <form class="form-group" [formGroup]="createForm" (ngSubmit)="onSubmit()">
         <div>
             <label>Full Name </label><br />
-            <input class="form-control" type="text" formControlName="name" placeholder="Enter First Name" required [ngClass]="{
-          'is-invalid': submitted && name?.touched && name?.errors
+            <input class="form-control" type="text" formControlName="firstName" placeholder="Enter First Name" required [ngClass]="{
+          'is-invalid': submitted && firstName?.touched && firstName?.errors
         }" />
 
-            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger mt-2">
-                <div *ngIf="name?.errors?.['required']">
+            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger mt-2">
+                <div *ngIf="firstName?.errors?.['required']">
                     First Name is required.
                 </div>
-                <div *ngIf="name?.errors?.['minlength']">
+                <div *ngIf="firstName?.errors?.['minlength']">
                     Name must be at least 4 characters long.
                 </div>
             </div>

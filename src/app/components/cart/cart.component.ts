@@ -11,7 +11,7 @@ import { CartService } from 'src/app/service/cart.service';
 export class CartComponent implements OnInit {
   cartItems: ProductStore[] = [];
   @Output() userInfo = new EventEmitter();
-  totalPrice: number | string = '';
+  totals: number | string = '';
   productCount: string[] = ['1', '2', '3', '4', '5'];
   selectedItem = '';
   constructor(private cartService: CartService, private route: Router) {}
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
 
   onSubmit(value: any) {
     this.cartService.clearCartProduct();
-    this.route.navigate([`success/${value.firstName}/${this.totalPrice}`]);
+    this.route.navigate([`success/${value.firstName}/${this.totals}`]);
   }
 
   refresh(): void {
@@ -40,11 +40,11 @@ export class CartComponent implements OnInit {
   }
 
   total() {
-    this.totalPrice = this.cartItems.reduce((accurecy, i) => {
-      this.totalPrice = parseFloat(
+    this.totals = this.cartItems.reduce((accurecy, i) => {
+      this.totals = parseFloat(
         (accurecy + i.price * Number(i.amount)).toFixed(2)
       );
-      return this.totalPrice;
+      return this.totals;
     }, 0);
   }
 
