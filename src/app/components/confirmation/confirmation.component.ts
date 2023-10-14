@@ -15,7 +15,7 @@ export class ConfirmationComponent implements OnInit {
     firstName: '' ,
     address:'',
     credit:0,
-  
+
   };
   constructor(private route: ActivatedRoute, private cartService: CartService) {}
   ngOnInit(): void {
