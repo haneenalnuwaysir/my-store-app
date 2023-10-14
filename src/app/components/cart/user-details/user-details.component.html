@@ -1,5 +1,102 @@
 <!-- <p>user-details works!</p> -->
 <div>
+    <form #form="ngForm" class="form-group" (ngSubmit)="onSubmit(form.value)" class="form-margin">
+        <div>
+          <p>First Name</p>
+          <input
+            type="text"
+            name="firstName"
+            ngModel
+            required
+            minlength="3"
+            maxlength="20"
+            #firstName="ngModel"
+            [(ngModel)]="confirm.firstName"
+            [ngClass]="{
+                'is-invalid': submitted && firstName?.touched && firstName?.errors
+              }"
+          
+          />
+          <br />
+          <div style="color: red" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger mt-2">
+            <div *ngIf="firstName?.errors?.['required']">
+                First Name is required.
+            </div>
+            <div *ngIf="firstName?.errors?.['minlength']">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+          <!-- <span style="color: red" *ngIf="firstName.invalid && firstName.touched"
+            >Name is required with 4 to 20 characters</span
+          > -->
+        </div>
+  
+        <div>
+          <p>Address</p>
+          <input
+            type="text"
+            name="address"
+            ngModel
+            required
+            minlength="3"
+            maxlength="15"
+            #address="ngModel"
+            [(ngModel)]="confirm.address"
+            [ngClass]="{
+                'is-invalid': submitted && address?.touched && address?.errors
+              }"
+          />
+          <br />
+          <div style="color: red" *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="alert alert-danger mt-2">
+            <div *ngIf="address?.errors?.['required']">
+                Address is required.</div>
+            <div *ngIf="address?.errors?.['minlength']">
+                Address must be at least 3 characters long.
+            </div>
+        </div>
+          <!-- <span style="color: red" *ngIf="address.invalid && address.touched"
+            >address is required with 3 to 20 characters</span
+          > -->
+        </div>
+  
+        <div>
+          <p>Credit Card Number</p>
+          <input
+            type="text"
+            name="credit"
+            ngModel
+            required
+            minlength="16"
+            maxlength="16"
+            #credit="ngModel"
+            (keypress)="OnlyNumbersAllowed($event)"
+            [(ngModel)]="confirm.credit"
+            [ngClass]="{
+                'is-invalid': submitted && credit?.touched && credit?.errors
+              }"
+          />
+          <br />
+          <div style="color: red"  *ngIf="credit?.invalid && (credit?.dirty || credit?.touched) " class="alert alert-danger mt-2">
+                  <div *ngIf="credit?.errors?.['required']">
+                      Credit Card is required or please enter number bellow.
+                  </div>
+                  <div *ngIf="credit?.errors?.['minlength']">
+                    Credit Card must be at least 16 characters long.
+                </div>
+               
+                <div *ngIf="credit?.errors?.['keypress']">
+                    Credit Card must be only numbers
+                </div>
+              </div>
+          <!-- <span
+            style="color: red"
+            *ngIf="credit.invalid && credit.touched"
+            >Credit Card number is required with 16 characters</span
+          > -->
+        </div>
+        <p>We'll never share your payment details with anyone else</p>
+        <button [disabled]="form.invalid" class="btn">Submit</button>
+      </form>
     <!-- <form class="form-group" [formGroup]="createForm" (ngSubmit)="onSubmit()">
         <div>
             <label>Full Name </label><br />
@@ -47,64 +144,5 @@
          <br />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form> -->
-    <form #form="ngForm" class="form-group" (ngSubmit)="onSubmit(form.value)" class="form-margin">
-        <div>
-          <p>First Name</p>
-          <input
-            type="text"
-            name="firstName"
-            ngModel
-            required
-            minlength="3"
-            maxlength="20"
-            #firstName="ngModel"
-            [(ngModel)]="confirm.firstName"
-          />
-          <br />
-          <span style="color: red" *ngIf="firstName.invalid && firstName.touched"
-            >Name is required with 4 to 20 characters</span
-          >
-        </div>
-  
-        <div>
-          <p>Address</p>
-          <input
-            type="text"
-            name="address"
-            ngModel
-            required
-            minlength="3"
-            maxlength="15"
-            #address="ngModel"
-            [(ngModel)]="confirm.address"
-          />
-          <br />
-          <span style="color: red" *ngIf="address.invalid && address.touched"
-            >address is required with 3 to 20 characters</span
-          >
-        </div>
-  
-        <div>
-          <p>Credit Card Number</p>
-          <input
-            type="text"
-            name="credit"
-            ngModel
-            required
-            minlength="16"
-            maxlength="16"
-            #credit="ngModel"
-            (keypress)="OnlyNumbersAllowed($event)"
-            [(ngModel)]="confirm.credit"
-          />
-          <br />
-          <span
-            style="color: red"
-            *ngIf="credit.invalid && credit.touched"
-            >Credit Card number is required with 16 characters</span
-          >
-        </div>
-        <p>We'll never share your payment details with anyone else</p>
-        <button [disabled]="form.invalid" class="btn">Submit</button>
-      </form>
+
 </div>

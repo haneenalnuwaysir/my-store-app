@@ -9,10 +9,10 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
-  firstName!: string | null;
+  name!: string | null;
   totals!: number;
   confirm: Address = {
-    firstName: '',
+    firstName: '' ,
     address:'',
     credit:0,
   
@@ -20,9 +20,11 @@ export class ConfirmationComponent implements OnInit {
   constructor(private route: ActivatedRoute, private cartService: CartService) {}
   ngOnInit(): void {
     this.confirm = this.cartService.getAddress();
+    // this.confirm.firstName ;
+    // this.name = this.confirm.firstName;
     // this.route.paramMap.subscribe((params) => {
-    //   this.firstName = params.get('firstName');
-    //   this.totals = Number(params.get('totals'));
+    //   this.name = params.get('firstName');
+    // //   this.totals = Number(params.get('totals'));
     // });
   }
 

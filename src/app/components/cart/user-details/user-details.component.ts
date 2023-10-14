@@ -14,6 +14,8 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  form:any;
+  allInputsValid: boolean = false;
   createForm!: FormGroup;
   submitted = false;
   confirm: Address = {
@@ -32,20 +34,22 @@ export class UserDetailsComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    // this.createForm = this.fb.group({
-    //   firstName: ['', [Validators.required, Validators.minLength(4)]],
-    //   address: ['', [Validators.required]],
-    //   credit: ['', [Validators.required]],
-    // });
-  }
-  onSubmit(data: Address):void {
-    // this.userInfo.emit(this.createForm.value);
-    this.confirm = data;
-    alert(`Thanks for the order ${data.firstName}!`);
-    // this.httpService.addAddressToOrder(data);
-    this.cartService.clearCartProduct();
-    this.route.navigate(['success']);
+  ngOnInit() {}
+  // checkAllInputsValid() {
+  //   this.allInputsValid = this.form.valid;
+  // }
+
+  onSubmit(data: Address) {
+    // if (this.allInputsValid) {
+      this.confirm = data;
+      alert(`Thanks for the order ${data.firstName}!`);
+      this.cartService.clearCartProduct();
+      this.route.navigate(['success']);
+   
+        // } else {
+        //   alert('There is somthing wrong with your');
+        // }
+
   }
 
   // get firstName() {

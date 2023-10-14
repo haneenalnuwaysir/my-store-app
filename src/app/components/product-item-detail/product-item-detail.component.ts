@@ -54,9 +54,7 @@ export class ProductItemDetailComponent implements OnInit {
   selectItemChange(value: any) {
     this.selectedItem = value;
   }
-  refresh(): void {
-    window.location.reload();
-  }
+
 
   addItem(product: ProductStore): void {
     const cartItems: ProductStore[] = this.cartService.getCartProduct();
@@ -73,7 +71,9 @@ export class ProductItemDetailComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-
+  refresh(): void {
+    window.location.reload();
+  }
 
   ngOnDestroy() {
     this.ngUnsub.next();

@@ -26,6 +26,7 @@ export class CartService {
   }
 
   getAddress(): Address {
+    this.confirm.firstName;
     return this.confirm;
   }
 }
