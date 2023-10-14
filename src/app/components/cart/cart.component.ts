@@ -49,12 +49,17 @@ export class CartComponent implements OnInit {
   }
 
   deleteItem(id: number) {
+
     const storageProducts = this.cartService.getCartProduct();
     const products = storageProducts.filter(
       (product: ProductStore) => product.id !== id
+    
     );
     window.localStorage.clear();
     localStorage.setItem('products', JSON.stringify(products));
+    // alert('Delete suceess!');
+    const message = 'Item has been removed from your cart.';
+    alert(message);
     this.refresh();
     this.total();
   }

@@ -1,6 +1,6 @@
 <!-- <p>user-details works!</p> -->
 <div>
-    <form class="form-group" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <!-- <form class="form-group" [formGroup]="createForm" (ngSubmit)="onSubmit()">
         <div>
             <label>Full Name </label><br />
             <input class="form-control" type="text" formControlName="firstName" placeholder="Enter First Name" required [ngClass]="{
@@ -46,5 +46,65 @@
         <span class="message">We'll never share your payment details with anyone else.</span>
          <br />
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </form> -->
+    <form #form="ngForm" class="form-group" (ngSubmit)="onSubmit(form.value)" class="form-margin">
+        <div>
+          <p>First Name</p>
+          <input
+            type="text"
+            name="firstName"
+            ngModel
+            required
+            minlength="3"
+            maxlength="20"
+            #firstName="ngModel"
+            [(ngModel)]="confirm.firstName"
+          />
+          <br />
+          <span style="color: red" *ngIf="firstName.invalid && firstName.touched"
+            >Name is required with 4 to 20 characters</span
+          >
+        </div>
+  
+        <div>
+          <p>Address</p>
+          <input
+            type="text"
+            name="address"
+            ngModel
+            required
+            minlength="3"
+            maxlength="15"
+            #address="ngModel"
+            [(ngModel)]="confirm.address"
+          />
+          <br />
+          <span style="color: red" *ngIf="address.invalid && address.touched"
+            >address is required with 3 to 20 characters</span
+          >
+        </div>
+  
+        <div>
+          <p>Credit Card Number</p>
+          <input
+            type="text"
+            name="credit"
+            ngModel
+            required
+            minlength="16"
+            maxlength="16"
+            #credit="ngModel"
+            (keypress)="OnlyNumbersAllowed($event)"
+            [(ngModel)]="confirm.credit"
+          />
+          <br />
+          <span
+            style="color: red"
+            *ngIf="credit.invalid && credit.touched"
+            >Credit Card number is required with 16 characters</span
+          >
+        </div>
+        <p>We'll never share your payment details with anyone else</p>
+        <button [disabled]="form.invalid" class="btn">Submit</button>
+      </form>
 </div>

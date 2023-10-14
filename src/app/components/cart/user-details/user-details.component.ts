@@ -4,6 +4,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Address } from 'src/app/model/address';
+import { CartService } from 'src/app/service/cart.service';
+
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
@@ -12,29 +16,47 @@ import {
 export class UserDetailsComponent implements OnInit {
   createForm!: FormGroup;
   submitted = false;
+  confirm: Address = {
+    firstName: '',
+    address:'',
+    credit:0 ,
+  
+  };
   @Output() userInfo = new EventEmitter();
-  constructor(private fb: FormBuilder) {}
+  constructor( private route: Router , private cartService:CartService) {
+    this.confirm = {
+      firstName: '',
+      address:'',
+      credit: 0,
+    };
 
-  ngOnInit(): void {
-    this.createForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
-      address: ['', [Validators.required]],
-      credit: ['', [Validators.required]],
-    });
-  }
-  onSubmit() {
-    this.userInfo.emit(this.createForm.value);
   }
 
-  get firstName() {
-    return this.createForm.get('firstName');
+  ngOnInit() {
+    // this.createForm = this.fb.group({
+    //   firstName: ['', [Validators.required, Validators.minLength(4)]],
+    //   address: ['', [Validators.required]],
+    //   credit: ['', [Validators.required]],
+    // });
   }
-  get address() {
-    return this.createForm.get('address');
+  onSubmit(data: Address):void {
+    // this.userInfo.emit(this.createForm.value);
+    this.confirm = data;
+    alert(`Thanks for the order ${data.firstName}!`);
+    // this.httpService.addAddressToOrder(data);
+    this.cartService.clearCartProduct();
+    this.route.navigate(['success']);
   }
-  get credit() {
-    return this.createForm.get('credit');
-  }
+
+  // get firstName() {
+  //   return this.createForm.get('firstName');
+  // }
+  // get address() {
+  //   return this.createForm.get('address');
+  // }
+  // get credit() {
+  //   return this.createForm.get('credit');
+  // }
 
   OnlyNumbersAllowed(event: KeyboardEvent): boolean {
     const charCode = event.which ? event.which : event.keyCode;

@@ -9,10 +9,9 @@ const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'item/:id', component: ProductItemDetailComponent },
   { path: 'cart', component: CartComponent },
-  {
-    path: 'success/:firstName/:totals',
-    component: ConfirmationComponent,
-  },
+  // { path: 'success/:firstName/:totals',component: ConfirmationComponent},
+  { path: 'success',component: ConfirmationComponent },
+  { path: '**' , redirectTo: '/'},
 ];
 
 @NgModule({
